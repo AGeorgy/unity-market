@@ -2,7 +2,9 @@
     "name": "Shop",
     "rootNamespace": "Shop",
     "references": [
-        "GUID:bcb16526102bc4277bdb7ccf4c9ae5d0"
+        "GUID:bcb16526102bc4277bdb7ccf4c9ae5d0",
+        "GUID:b8b6a3c66f0b4734f8daebbbce1526c1",
+        "GUID:1a3aa05c1f351ee40882c644ba9139d2"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -2,36 +2,53 @@
 using System;
 using Core.Loader;
 using Shop.Setting;
+using Shop.View;
 
 namespace Shop
 {
     public class ShopManager : IShopShower
     {
-        private const string SHOP_SCENE_NAME = "Shop";
+        private const string SETTING_NAME = "ShopSetting";
+        private const string VIEW_NAME = "ShopView";
 
-        private ShopManager()
+        private ShopManager(IPrefabLoader prefabLoader)
         {
+            _prefabLoader = prefabLoader;
+            LoadSettings();
+
         }
-        private static readonly Lazy<ShopManager> lazy = new(() => new ShopManager());
+        private ShopManager() { }
+        private static Lazy<ShopManager> _instance;
         public static ShopManager Instance
         {
             get
             {
-                return lazy.Value;
+                return _instance.Value;
             }
         }
 
-        private ShopSetting _shopSetting;
-        public ShopSetting ShopSetting => _shopSetting;
-
-        public void LoadSettings(IScriptableObjectSettingLoader settingLoader)
+        public static void Initialize(IPrefabLoader prefabLoader)
         {
-            _shopSetting = settingLoader.Load<ShopSetting>("ShopSetting");
+            _instance = new(() => new ShopManager(prefabLoader));
         }
 
-        public void SowShop(ISceneLoader sceneLoader)
+        private ShopModel _model;
+        private readonly IPrefabLoader _prefabLoader;
+
+        public void SowShop()
         {
-            sceneLoader.Load(SHOP_SCENE_NAME);
+            _prefabLoader.Load<ShopView>(VIEW_NAME);
+        }
+
+        public void NotifyShopViewReady(ShopView view)
+        {
+            view.SetModel(new ShopViewModel(_model));
+        }
+
+        private void LoadSettings()
+        {
+            var setting = _prefabLoader.Load<ShopSetting>(SETTING_NAME);
+            _model = new ShopModel(setting);
         }
     }
 

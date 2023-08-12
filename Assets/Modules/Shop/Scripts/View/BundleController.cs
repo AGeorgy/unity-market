@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Shop.Setting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -11,7 +12,7 @@ namespace Shop.View
         private Label _name;
         private Button _buyButton;
         private int _index;
-        private BundleSetting _setting;
+        private IShopViewBundle _bundleModel;
 
         public void SetView(VisualElement visualElement)
         {
@@ -20,14 +21,15 @@ namespace Shop.View
             _buyButton = _root.Q<Button>("BuyButton");
         }
 
-        internal void SetData(int index, IBundleSettings bundleSettings)
+        internal void SetData(int index, List<IShopViewBundle> bundleModels)
         {
             _index = index;
-            _setting = bundleSettings.Bundles[_index];
+            _bundleModel = bundleModels[_index];
 
-            _name.text = _setting.Name;
-            _root.style.backgroundColor = _setting.Color;
+            _name.text = _bundleModel.Name;
+            _root.style.backgroundColor = _bundleModel.Color;
 
+            _buyButton.SetEnabled(_bundleModel.IsPurchasable);
             _buyButton.clickable.clicked += BuyBundle;
         }
 

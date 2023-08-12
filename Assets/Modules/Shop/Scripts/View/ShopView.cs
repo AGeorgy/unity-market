@@ -12,9 +12,13 @@ namespace Shop.View
 
         void Start()
         {
-            var settings = ShopManager.Instance.ShopSetting;
+            ShopManager.Instance.NotifyShopViewReady(this);
+        }
+
+        public void SetModel(ShopViewModel model)
+        {
             var shopListController = new ShopListController();
-            shopListController.Initialize(_shopView.rootVisualElement, _bundleTemplate, settings);
+            shopListController.Initialize(_shopView.rootVisualElement, _bundleTemplate, model.Bundles);
         }
     }
 }

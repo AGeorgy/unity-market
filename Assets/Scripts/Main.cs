@@ -9,15 +9,13 @@ public class Main : MonoBehaviour
 {
     void Start()
     {
-        var loaderFabric = new LoaderFabric();
+        var loaderFactory = new LoaderFactory();
 
-        var healthManager = new HealthManager();
-        var goldManager = new GoldManager();
-        var ratingManager = new RatingManager();
+        HealthManager.Initialize(loaderFactory.GetLoader<IPrefabLoader>());
+        GoldManager.Initialize(loaderFactory.GetLoader<IPrefabLoader>());
+        RatingManager.Initialize(loaderFactory.GetLoader<IPrefabLoader>());
 
-        var shopManager = ShopManager.Instance;
-        shopManager.LoadSettings(loaderFabric.GetScriptableObjectLoader());
-
-        shopManager.SowShop(loaderFabric.GetSceneLoader());
+        ShopManager.Initialize(loaderFactory.GetLoader<IPrefabLoader>());
+        ShopManager.Instance.SowShop();
     }
 }

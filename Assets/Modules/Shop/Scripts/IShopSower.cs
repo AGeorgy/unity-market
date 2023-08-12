@@ -4,6 +4,6 @@ namespace Shop
 {
     public interface IShopShower
     {
-        void SowShop(ISceneLoader sceneLoader);
+        void SowShop();
     }
 }

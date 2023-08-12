@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Shop.Setting;
 using UnityEngine.UIElements;
 
@@ -7,14 +8,14 @@ namespace Shop.View
     {
         private ListView _list;
 
-        public void Initialize(VisualElement rootVisualElement, VisualTreeAsset entryTemplate, IBundleSettings bundleSettings)
+        public void Initialize(VisualElement rootVisualElement, VisualTreeAsset entryTemplate, List<IShopViewBundle> bundleModels)
         {
             _list = rootVisualElement.Q<ListView>("List");
 
-            FillList(entryTemplate, bundleSettings);
+            FillList(entryTemplate, bundleModels);
         }
 
-        private void FillList(VisualTreeAsset entryTemplate, IBundleSettings bundleSettings)
+        private void FillList(VisualTreeAsset entryTemplate, List<IShopViewBundle> bundleModels)
         {
             _list.makeItem = () =>
             {
@@ -32,11 +33,11 @@ namespace Shop.View
 
             _list.bindItem = (item, index) =>
             {
-                (item.userData as BundleController).SetData(index, bundleSettings);
+                (item.userData as BundleController).SetData(index, bundleModels);
             };
 
             _list.fixedItemHeight = 100;
-            _list.itemsSource = bundleSettings.Bundles;
+            _list.itemsSource = bundleModels;
         }
     }
 }

@@ -1,20 +1,24 @@
+using System;
+using System.Collections.Generic;
 using Core;
 using UnityEngine;
 
 namespace Shop.Setting
 {
-    [System.Serializable]
-    public class BundleSetting
+    [Serializable]
+    public class BundleSetting : IBundleSetting
     {
         [SerializeField] private string _name;
         [SerializeField] private Color _color;
 
-        [SerializeField] private ISpendable _price;
-        [SerializeField] private IReward _reward;
+        [SerializeReference, SelectImplementation(typeof(ISpendable))]
+        private List<ISpendable> _price;
+        [SerializeReference, SelectImplementation(typeof(IReward))]
+        private List<IReward> _reward;
 
         public string Name => _name;
         public Color Color => _color;
-        public ISpendable Price => _price;
-        public IReward Reward => _reward;
+        public List<ISpendable> Price => _price;
+        public List<IReward> Reward => _reward;
     }
 }
