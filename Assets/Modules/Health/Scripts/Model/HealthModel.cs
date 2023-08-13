@@ -4,7 +4,7 @@ namespace Health.Model
 {
     public class HealthModel : IHealthModel
     {
-        public int Health { get; private set; }
+        public int Health { get; set; }
 
         public HealthModel(HealthSetting setting)
         {

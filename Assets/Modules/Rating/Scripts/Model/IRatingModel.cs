@@ -2,6 +2,6 @@ namespace Rating.Model
 {
     public interface IRatingModel
     {
-        int Rating { get; }
+        int Rating { get; set; }
     }
 }

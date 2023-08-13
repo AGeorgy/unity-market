@@ -2,6 +2,6 @@ namespace Health.Model
 {
     public interface IHealthModel
     {
-        int Health { get; }
+        int Health { get; set; }
     }
 }

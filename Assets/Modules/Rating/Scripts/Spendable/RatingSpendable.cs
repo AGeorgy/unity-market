@@ -11,7 +11,7 @@ namespace Rating.Spendable
 
         public int Amount => _amount;
 
-        public bool IsValid(IValidatorFactory validatorFactory)
+        public bool IsValid(IValidator validatorFactory)
         {
             return validatorFactory.IsValidSpend(this);
         }

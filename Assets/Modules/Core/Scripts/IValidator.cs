@@ -1,6 +1,6 @@
 namespace Core
 {
-    public interface IValidatorFactory
+    public interface IValidator
     {
         bool IsValidSpend<T>(T spendable) where T : ISpendable;
     }

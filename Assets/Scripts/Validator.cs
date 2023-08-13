@@ -7,13 +7,13 @@ using Health.Spendable;
 using Rating.Model;
 using Rating.Spendable;
 
-public class ValidatorFactory : IValidatorFactory
+public class Validator : IValidator
 {
     private IGoldModel _goldModel;
     private IHealthModel _healthModel;
     private IRatingModel _ratingModel;
 
-    public ValidatorFactory(IGoldModel goldModel, IHealthModel healthModel, IRatingModel ratingModel)
+    public Validator(IGoldModel goldModel, IHealthModel healthModel, IRatingModel ratingModel)
     {
         _goldModel = goldModel;
         _healthModel = healthModel;

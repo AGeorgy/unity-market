@@ -2,6 +2,6 @@ namespace Gold.Model
 {
     public interface IGoldModel
     {
-        int Gold { get; }
+        int Gold { get; set; }
     }
 }

@@ -37,10 +37,12 @@ public class Main : MonoBehaviour
         var ratingSetting = prefabLoader.Load<RatingSetting>(SETTING_RATING_NAME);
         var ratingModel = new RatingModel(ratingSetting);
 
-        var validator = new ValidatorFactory(goldModel, healthModel, ratingModel);
+        var validator = new Validator(goldModel, healthModel, ratingModel);
+        var spender = new Spender(goldModel, healthModel, ratingModel);
+        var rewarder = new Rewarder(goldModel, healthModel, ratingModel);
 
         var shopSetting = prefabLoader.Load<ShopSetting>(SETTING_SHOP_NAME);
-        _shopModel = new ShopModel(shopSetting, validator);
+        _shopModel = new ShopModel(shopSetting, validator, spender, rewarder);
         var shopController = prefabLoader.Load<ShopController>(VIEW_NAME);
         shopController.Init(_shopModel);
     }

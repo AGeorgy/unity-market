@@ -9,5 +9,7 @@ namespace Gold.Reward
     {
         [SerializeField] private int _amount;
 
+        public int Amount => _amount;
+
     }
 }

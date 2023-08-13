@@ -6,13 +6,17 @@ namespace Shop.Model
 {
     public class ShopModel : IShopModel
     {
-        private IValidatorFactory _validator;
+        private IValidator _validator;
+        private ISpender _spender;
+        private IRewarder _rewarder;
         private List<BundleModel> _bundles;
         private List<INotifyUpdateModel> _updateObservers;
 
-        public ShopModel(ShopSetting setting, IValidatorFactory validator)
+        public ShopModel(ShopSetting setting, IValidator validator, ISpender spender, IRewarder rewarder)
         {
             _validator = validator;
+            _spender = spender;
+            _rewarder = rewarder;
             _bundles = new List<BundleModel>();
             _updateObservers = new List<INotifyUpdateModel>();
             foreach (var bundleSetting in setting.Bundles)
@@ -48,7 +52,21 @@ namespace Shop.Model
 
         public void BuyBundleAtIndex(int index)
         {
+            if (_bundles.Count <= index)
+            {
+                return;
+            }
+            var spendables = _bundles[index].Price;
+            var rewards = _bundles[index].Reward;
 
+            foreach (var spend in spendables)
+            {
+                _spender.Spend(spend);
+            }
+            foreach (var reward in rewards)
+            {
+                _rewarder.AddReward(reward);
+            }
         }
 
         private List<IViewBundle> GetPurchasableBundle()

@@ -4,7 +4,7 @@ namespace Rating.Model
 {
     public class RatingModel : IRatingModel
     {
-        public int Rating { get; private set; }
+        public int Rating { get; set; }
 
         public RatingModel(RatingSetting setting)
         {

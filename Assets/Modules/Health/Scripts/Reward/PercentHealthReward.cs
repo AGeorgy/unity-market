@@ -8,5 +8,7 @@ namespace Health.Reward
     public class PercentHealthReward : IReward
     {
         [SerializeField] private int _percent;
+
+        public int Percent => _percent;
     }
 }

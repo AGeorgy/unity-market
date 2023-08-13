@@ -9,7 +9,9 @@ namespace Health.Spendable
     {
         [SerializeField] private int _percent;
 
-        public bool IsValid(IValidatorFactory validatorFactory)
+        public int Percent => _percent;
+
+        public bool IsValid(IValidator validatorFactory)
         {
             return validatorFactory.IsValidSpend(this);
         }

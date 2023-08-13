@@ -16,6 +16,7 @@ namespace Shop.Model
         public string Name => _name;
         public Color Color => _color;
         public List<ISpendable> Price => _price;
+        public List<IReward> Reward => _reward;
 
         public BundleModel(BundleSetting setting)
         {

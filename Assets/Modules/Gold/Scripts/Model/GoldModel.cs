@@ -4,7 +4,7 @@ namespace Gold.Model
 {
     public class GoldModel : IGoldModel
     {
-        public int Gold { get; private set; }
+        public int Gold { get; set; }
 
         public GoldModel(GoldSetting setting)
         {
