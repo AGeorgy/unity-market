@@ -61,11 +61,11 @@ namespace Shop.Model
 
             foreach (var spend in spendables)
             {
-                _spender.Spend(spend);
+                spend.Spend(_spender);
             }
             foreach (var reward in rewards)
             {
-                _rewarder.AddReward(reward);
+                reward.AddReward(_rewarder);
             }
         }
 

@@ -10,5 +10,10 @@ namespace Health.Reward
         [SerializeField] private int _percent;
 
         public int Percent => _percent;
+
+        public void AddReward(IRewarder rewarder)
+        {
+            rewarder.AddReward(this);
+        }
     }
 }

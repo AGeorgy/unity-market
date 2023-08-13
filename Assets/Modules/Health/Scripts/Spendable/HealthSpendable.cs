@@ -15,5 +15,10 @@ namespace Health.Spendable
         {
             return validatorFactory.IsValidSpend(this);
         }
+
+        public void Spend(ISpender spender)
+        {
+            spender.Spend(this);
+        }
     }
 }

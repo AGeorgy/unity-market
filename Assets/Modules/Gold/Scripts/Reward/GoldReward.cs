@@ -11,5 +11,10 @@ namespace Gold.Reward
 
         public int Amount => _amount;
 
+        public void AddReward(IRewarder rewarder)
+        {
+            rewarder.AddReward(this);
+        }
+
     }
 }
