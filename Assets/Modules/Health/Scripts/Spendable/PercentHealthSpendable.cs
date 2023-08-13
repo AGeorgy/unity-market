@@ -9,6 +9,9 @@ namespace Health.Spendable
     {
         [SerializeField] private int _percent;
 
-        public bool IfCanSpend => HealthManager.Instance.ValidSpend();
+        public bool IsValid(IValidatorFactory validatorFactory)
+        {
+            return validatorFactory.IsValidSpend(this);
+        }
     }
 }

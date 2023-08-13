@@ -15,6 +15,7 @@ namespace Shop.Model
 
         public string Name => _name;
         public Color Color => _color;
+        public List<ISpendable> Price => _price;
 
         public BundleModel(BundleSetting setting)
         {
@@ -22,21 +23,6 @@ namespace Shop.Model
             _color = setting.Color;
             _price = setting.Price;
             _reward = setting.Reward;
-        }
-
-        public bool IsPurchasable
-        {
-            get
-            {
-                foreach (var spendable in _price)
-                {
-                    if (!spendable.IfCanSpend)
-                    {
-                        return false;
-                    }
-                }
-                return true;
-            }
         }
     }
 }

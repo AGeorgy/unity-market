@@ -6,11 +6,13 @@ namespace Shop.Model
 {
     public class ShopModel : IShopModel
     {
+        private IValidatorFactory _validator;
         private List<BundleModel> _bundles;
         private List<INotifyUpdateModel> _updateObservers;
 
-        public ShopModel(ShopSetting setting)
+        public ShopModel(ShopSetting setting, IValidatorFactory validator)
         {
+            _validator = validator;
             _bundles = new List<BundleModel>();
             _updateObservers = new List<INotifyUpdateModel>();
             foreach (var bundleSetting in setting.Bundles)
@@ -19,7 +21,7 @@ namespace Shop.Model
             }
         }
 
-        List<IViewBundle> IShopModel.AsViewBundle => GetPurchasableBundle();
+        public List<IViewBundle> AsViewBundle => GetPurchasableBundle();
 
         public void AddModelUpdateObserver(INotifyUpdateModel observer)
         {
@@ -28,7 +30,20 @@ namespace Shop.Model
 
         public bool ValidateBundleAtIndex(int index)
         {
-            return _bundles.Count > index && _bundles[index].IsPurchasable == true;
+            if (_bundles.Count <= index)
+            {
+                return false;
+            }
+            var price = _bundles[index].Price;
+
+            foreach (var spendable in price)
+            {
+                if (!spendable.IsValid(_validator))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public void BuyBundleAtIndex(int index)

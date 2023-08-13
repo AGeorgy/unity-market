@@ -16,15 +16,15 @@ namespace Shop.View
 
         void Start()
         {
-            ShopManager.Instance.NotifyShopViewReady(this);
+            _model.AddModelUpdateObserver(this);
+            var bundles = _model.AsViewBundle;
+            _shopListController = new ShopListController();
+            _shopListController.Initialize(_shopView.rootVisualElement, _bundleTemplate, bundles, this, this);
         }
 
-        public void SetModel(IShopModel model)
+        public void Init(IShopModel model)
         {
             _model = model;
-            _model.AddModelUpdateObserver(this);
-            _shopListController = new ShopListController();
-            _shopListController.Initialize(_shopView.rootVisualElement, _bundleTemplate, _model.AsViewBundle, this, this);
         }
 
         public void NotifyBuyBundleAtIndex(int index)

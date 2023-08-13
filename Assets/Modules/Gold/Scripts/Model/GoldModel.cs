@@ -1,13 +1,12 @@
-using System.Collections.Generic;
 using Gold.Setting;
 
-namespace Gold
+namespace Gold.Model
 {
-    public class GoldModel
+    public class GoldModel : IGoldModel
     {
         public int Gold { get; private set; }
 
-        public GoldModel(IGoldSetting setting)
+        public GoldModel(GoldSetting setting)
         {
             Gold = setting.Gold;
         }

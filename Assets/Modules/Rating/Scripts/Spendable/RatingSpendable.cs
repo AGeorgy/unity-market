@@ -9,6 +9,11 @@ namespace Rating.Spendable
     {
         [SerializeField] private int _amount;
 
-        public bool IfCanSpend => RatingManager.Instance.ValidSpend(_amount);
+        public int Amount => _amount;
+
+        public bool IsValid(IValidatorFactory validatorFactory)
+        {
+            return validatorFactory.IsValidSpend(this);
+        }
     }
 }

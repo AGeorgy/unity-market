@@ -11,6 +11,9 @@ namespace Gold.Spendable
 
         public int Amount => _amount;
 
-        public bool IfCanSpend => GoldManager.Instance.ValidSpend(_amount);
+        public bool IsValid(IValidatorFactory validatorFactory)
+        {
+            return validatorFactory.IsValidSpend(this);
+        }
     }
 }
