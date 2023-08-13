@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 177147ba5936e4454b04061701c15522, type: 3}
   m_Name: RatingSetting
   m_EditorClassIdentifier: 
-  _rating: 0
+  _rating: 2

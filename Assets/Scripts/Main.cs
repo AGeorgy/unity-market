@@ -10,12 +10,13 @@ public class Main : MonoBehaviour
     void Start()
     {
         var loaderFactory = new LoaderFactory();
+        var prefabLoader = loaderFactory.GetLoader<IPrefabLoader>();
 
-        HealthManager.Initialize(loaderFactory.GetLoader<IPrefabLoader>());
-        GoldManager.Initialize(loaderFactory.GetLoader<IPrefabLoader>());
-        RatingManager.Initialize(loaderFactory.GetLoader<IPrefabLoader>());
+        HealthManager.Initialize(prefabLoader);
+        GoldManager.Initialize(prefabLoader);
+        RatingManager.Initialize(prefabLoader);
 
-        ShopManager.Initialize(loaderFactory.GetLoader<IPrefabLoader>());
+        ShopManager.Initialize(prefabLoader);
         ShopManager.Instance.SowShop();
     }
 }

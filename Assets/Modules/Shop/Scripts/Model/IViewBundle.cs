@@ -1,11 +1,10 @@
 using UnityEngine;
 
-namespace Shop.View
+namespace Shop.Model
 {
-    public interface IShopViewBundle
+    public interface IViewBundle
     {
         string Name { get; }
         Color Color { get; }
-        bool IsPurchasable { get; }
     }
 }

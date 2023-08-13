@@ -1,16 +1,14 @@
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using UnityEngine;
 
 namespace Shop.Setting
 {
     [CreateAssetMenu(fileName = "ShopSetting", menuName = "Game/ShopSetting")]
-    public class ShopSetting : ScriptableObject, IBundleSettings
+    public class ShopSetting : ScriptableObject
     {
-        [SerializeReference, SelectImplementation(typeof(IBundleSetting))]
-        private List<IBundleSetting> _bundles;
+        [SerializeField]
+        private List<BundleSetting> _bundles;
 
-        public List<IBundleSetting> Bundles => _bundles;
+        public List<BundleSetting> Bundles => _bundles;
     }
 }

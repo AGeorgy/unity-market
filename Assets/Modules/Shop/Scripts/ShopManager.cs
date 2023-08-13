@@ -3,10 +3,11 @@ using System;
 using Core.Loader;
 using Shop.Setting;
 using Shop.View;
+using Shop.Model;
 
 namespace Shop
 {
-    public class ShopManager : IShopShower
+    public class ShopManager
     {
         private const string SETTING_NAME = "ShopSetting";
         private const string VIEW_NAME = "ShopView";
@@ -32,17 +33,17 @@ namespace Shop
             _instance = new(() => new ShopManager(prefabLoader));
         }
 
-        private ShopModel _model;
+        private IShopModel _model;
         private readonly IPrefabLoader _prefabLoader;
 
         public void SowShop()
         {
-            _prefabLoader.Load<ShopView>(VIEW_NAME);
+            _prefabLoader.Load<ShopController>(VIEW_NAME);
         }
 
-        public void NotifyShopViewReady(ShopView view)
+        public void NotifyShopViewReady(ShopController shop)
         {
-            view.SetModel(new ShopViewModel(_model));
+            shop.SetModel(_model);
         }
 
         private void LoadSettings()

@@ -13,42 +13,29 @@ MonoBehaviour:
   m_Name: ShopSetting
   m_EditorClassIdentifier: 
   _bundles:
-  - rid: 5123698056810463238
-  - rid: 5123698056810463241
+  - _name: Bundle 1
+    _color: {r: 0.8773585, g: 0.3517711, b: 0.3517711, a: 1}
+    _price:
+    - rid: 5123698056810463244
+    - rid: 5123698056810463245
+    _reward: []
+  - _name: Bundle 2
+    _color: {r: 0.59633154, g: 0.6037736, b: 0.21929511, a: 1}
+    _price:
+    - rid: 5123698056810463246
+    _reward: []
   references:
     version: 2
     RefIds:
-    - rid: 5123698056810463238
-      type: {class: BundleSetting, ns: Shop.Setting, asm: Shop}
-      data:
-        _name: Bundle 1
-        _color: {r: 0.6415094, g: 0.60925716, b: 0.2208971, a: 0}
-        _price:
-        - rid: 5123698056810463239
-        - rid: 5123698056810463240
-        _reward: []
-    - rid: 5123698056810463239
-      type: {class: HealthSpendable, ns: Health.Spendable, asm: Health}
-      data:
-        _amount: 2
-    - rid: 5123698056810463240
-      type: {class: GoldSpendable, ns: Gold.Spendable, asm: Gold}
-      data:
-        _amount: 1
-    - rid: 5123698056810463241
-      type: {class: BundleSetting, ns: Shop.Setting, asm: Shop}
-      data:
-        _name: Bundle 2
-        _color: {r: 0.745283, g: 0.19335175, b: 0.19335175, a: 0}
-        _price:
-        - rid: 5123698056810463242
-        - rid: 5123698056810463243
-        _reward: []
-    - rid: 5123698056810463242
+    - rid: 5123698056810463244
       type: {class: GoldSpendable, ns: Gold.Spendable, asm: Gold}
       data:
         _amount: 100
-    - rid: 5123698056810463243
-      type: {class: RatingSpendable, ns: Rating.Spendable, asm: Rating}
+    - rid: 5123698056810463245
+      type: {class: HealthSpendable, ns: Health.Spendable, asm: Health}
       data:
         _amount: 1
+    - rid: 5123698056810463246
+      type: {class: GoldSpendable, ns: Gold.Spendable, asm: Gold}
+      data:
+        _amount: 2

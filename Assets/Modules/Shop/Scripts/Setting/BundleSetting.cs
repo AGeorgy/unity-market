@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Shop.Setting
 {
     [Serializable]
-    public class BundleSetting : IBundleSetting
+    public class BundleSetting
     {
         [SerializeField] private string _name;
         [SerializeField] private Color _color;

@@ -1,0 +1,42 @@
+using System.Collections.Generic;
+using Shop.Setting;
+using UnityEngine;
+using Core;
+
+namespace Shop.Model
+{
+    public class BundleModel : IViewBundle
+    {
+        private readonly string _name;
+        private readonly Color _color;
+
+        private readonly List<ISpendable> _price;
+        private readonly List<IReward> _reward;
+
+        public string Name => _name;
+        public Color Color => _color;
+
+        public BundleModel(BundleSetting setting)
+        {
+            _name = setting.Name;
+            _color = setting.Color;
+            _price = setting.Price;
+            _reward = setting.Reward;
+        }
+
+        public bool IsPurchasable
+        {
+            get
+            {
+                foreach (var spendable in _price)
+                {
+                    if (!spendable.IfCanSpend)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+    }
+}
