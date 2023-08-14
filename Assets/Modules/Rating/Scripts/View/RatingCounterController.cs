@@ -25,7 +25,7 @@ namespace Rating.View
             NotifyUpdateModel();
         }
 
-        public void Init(IRatingModel model)
+        public void SetModel(IRatingModel model)
         {
             _model = model;
         }

@@ -25,7 +25,7 @@ namespace Health.View
             NotifyUpdateModel();
         }
 
-        public void Init(IHealthModel model)
+        public void SetModel(IHealthModel model)
         {
             _model = model;
         }

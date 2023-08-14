@@ -22,7 +22,7 @@ namespace Shop.View
             _shopListController.Initialize(_shopView.rootVisualElement, _bundleTemplate, bundles, this, this);
         }
 
-        public void Init(IShopModel model)
+        public void SetModel(IShopModel model)
         {
             _model = model;
         }

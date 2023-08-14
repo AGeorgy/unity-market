@@ -44,19 +44,19 @@ public class Main : MonoBehaviour
         var goldModel = new GoldModel(goldSetting);
         var goldCounterController = prefabLoader.Load<GoldCounterController>(VIEW_GOLD_COUNTER);
         goldCounterController.transform.SetParent(panel.transform);
-        goldCounterController.Init(goldModel);
+        goldCounterController.SetModel(goldModel);
 
         var healthSetting = prefabLoader.Load<HealthSetting>(SETTING_HEALTH_NAME);
         var healthModel = new HealthModel(healthSetting);
         var healthCounterController = prefabLoader.Load<HealthCounterController>(VIEW_HEALTH_COUNTER);
         healthCounterController.transform.SetParent(panel.transform);
-        healthCounterController.Init(healthModel);
+        healthCounterController.SetModel(healthModel);
 
         var ratingSetting = prefabLoader.Load<RatingSetting>(SETTING_RATING_NAME);
         var ratingModel = new RatingModel(ratingSetting);
         var ratingCounterController = prefabLoader.Load<RatingCounterController>(VIEW_RATING_COUNTER);
         ratingCounterController.transform.SetParent(panel.transform);
-        ratingCounterController.Init(ratingModel);
+        ratingCounterController.SetModel(ratingModel);
 
         var validator = new Validator(goldModel, healthModel, ratingModel);
         var spender = new Spender(goldModel, healthModel, ratingModel);
@@ -65,6 +65,6 @@ public class Main : MonoBehaviour
         var shopSetting = prefabLoader.Load<ShopSetting>(SETTING_SHOP_NAME);
         _shopModel = new ShopModel(shopSetting, validator, spender, rewarder);
         var shopController = prefabLoader.Load<ShopController>(VIEW_SHOP);
-        shopController.Init(_shopModel);
+        shopController.SetModel(_shopModel);
     }
 }

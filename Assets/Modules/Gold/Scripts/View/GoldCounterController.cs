@@ -25,7 +25,7 @@ namespace Gold.View
             NotifyUpdateModel();
         }
 
-        public void Init(IGoldModel model)
+        public void SetModel(IGoldModel model)
         {
             _model = model;
         }
