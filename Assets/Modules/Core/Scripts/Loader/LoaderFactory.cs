@@ -1,23 +1,28 @@
 
 using System;
+using System.Collections.Generic;
 
 namespace Core.Loader
 {
     public class LoaderFactory
     {
-        private static readonly Lazy<IPrefabLoader> _prefabLoader = new(() => new PrefabLoader());
-        private static readonly Lazy<ISceneLoader> _sceneLoader = new(() => new SceneLoader());
+        private Dictionary<Type, object> _loaders;
+
+        public LoaderFactory()
+        {
+            _loaders = new Dictionary<Type, object>
+            {
+                { typeof(IPrefabLoader), new PrefabLoader() },
+                { typeof(ISceneLoader), new SceneLoader() }
+            };
+        }
 
         public T GetLoader<T>()
             where T : class
         {
-            if (typeof(T) == typeof(IPrefabLoader))
+            if (_loaders.TryGetValue(typeof(T), out var loader))
             {
-                return (T)_prefabLoader.Value;
-            }
-            else if (typeof(T) == typeof(ISceneLoader))
-            {
-                return (T)_sceneLoader.Value;
+                return (T)loader;
             }
             else
             {

@@ -30,6 +30,8 @@ public class Main : MonoBehaviour
 
     private IShopModel _shopModel;
 
+    // Entry point might be much cleaner.
+    // The way it created really depends on the project. It not the point of this example.
     private void Start()
     {
         var loaderFactory = new LoaderFactory();
