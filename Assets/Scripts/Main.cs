@@ -14,6 +14,7 @@ using Rating.Setting;
 using Rating.Model;
 using Health.View;
 using Rating.View;
+using Gold;
 
 public class Main : MonoBehaviour
 {
@@ -37,7 +38,6 @@ public class Main : MonoBehaviour
         var loaderFactory = new LoaderFactory();
         var prefabLoader = loaderFactory.GetLoader<IPrefabLoader>();
 
-
         var panel = prefabLoader.Load<GameObject>(PANEL);
 
         var goldSetting = prefabLoader.Load<GoldSetting>(SETTING_GOLD_NAME);
@@ -58,12 +58,14 @@ public class Main : MonoBehaviour
         ratingCounterController.transform.SetParent(panel.transform);
         ratingCounterController.SetModel(ratingModel);
 
-        var validator = new Validator(goldModel, healthModel, ratingModel);
-        var spender = new Spender(goldModel, healthModel, ratingModel);
-        var rewarder = new Rewarder(goldModel, healthModel, ratingModel);
+        var resourceStrategies = new ResourceStrategyFactory();
+        resourceStrategies.AddStrategy(new GoldStrategy(goldModel));
+        resourceStrategies.AddStrategy(new HealthStrategy(healthModel));
+        resourceStrategies.AddStrategy(new HealthPercentStrategy(healthModel));
+        resourceStrategies.AddStrategy(new RatingStrategy(ratingModel));
 
         var shopSetting = prefabLoader.Load<ShopSetting>(SETTING_SHOP_NAME);
-        _shopModel = new ShopModel(shopSetting, validator, spender, rewarder);
+        _shopModel = new ShopModel(shopSetting, resourceStrategies);
         var shopController = prefabLoader.Load<ShopController>(VIEW_SHOP);
         shopController.SetModel(_shopModel);
     }

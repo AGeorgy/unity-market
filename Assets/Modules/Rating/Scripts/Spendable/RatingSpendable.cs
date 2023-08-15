@@ -11,14 +11,14 @@ namespace Rating.Spendable
 
         public int Amount => _amount;
 
-        public bool IsValid(IValidator validatorFactory)
+        public bool IsValid(IResourceStrategyFactory resourceStrategyFactory)
         {
-            return validatorFactory.IsValidSpend(this);
+            return resourceStrategyFactory.GetStrategy<RatingStrategy>().IsValidSpend(this);
         }
 
-        public void Spend(ISpender spender)
+        public void Spend(IResourceStrategyFactory resourceStrategyFactory)
         {
-            spender.Spend(this);
+            resourceStrategyFactory.GetStrategy<RatingStrategy>().Spend(this);
         }
     }
 }

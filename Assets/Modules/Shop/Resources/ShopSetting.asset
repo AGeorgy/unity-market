@@ -23,7 +23,9 @@ MonoBehaviour:
     _color: {r: 0.59633154, g: 0.6037736, b: 0.21929511, a: 1}
     _price:
     - rid: 5123698056810463246
-    _reward: []
+    _reward:
+    - rid: 5123698112103186432
+    - rid: 5123698112103186433
   references:
     version: 2
     RefIds:
@@ -39,3 +41,11 @@ MonoBehaviour:
       type: {class: GoldSpendable, ns: Gold.Spendable, asm: Gold}
       data:
         _amount: 2
+    - rid: 5123698112103186432
+      type: {class: RatingReward, ns: Rating.Reward, asm: Rating}
+      data:
+        _amount: 2
+    - rid: 5123698112103186433
+      type: {class: PercentHealthReward, ns: Health.Reward, asm: Health}
+      data:
+        _percent: 50

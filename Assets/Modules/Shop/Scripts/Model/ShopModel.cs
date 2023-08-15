@@ -6,17 +6,14 @@ namespace Shop.Model
 {
     public class ShopModel : IShopModel
     {
-        private IValidator _validator;
-        private ISpender _spender;
-        private IRewarder _rewarder;
+        private IResourceStrategyFactory _resourceStrategies;
         private List<BundleModel> _bundles;
         private List<INotifyUpdateModel> _updateObservers;
+        private ShopSetting shopSetting;
 
-        public ShopModel(ShopSetting setting, IValidator validator, ISpender spender, IRewarder rewarder)
+        public ShopModel(ShopSetting setting, IResourceStrategyFactory resourceStrategies)
         {
-            _validator = validator;
-            _spender = spender;
-            _rewarder = rewarder;
+            _resourceStrategies = resourceStrategies;
             _bundles = new List<BundleModel>();
             _updateObservers = new List<INotifyUpdateModel>();
             foreach (var bundleSetting in setting.Bundles)
@@ -42,7 +39,7 @@ namespace Shop.Model
 
             foreach (var spendable in price)
             {
-                if (!spendable.IsValid(_validator))
+                if (!spendable.IsValid(_resourceStrategies))
                 {
                     return false;
                 }
@@ -61,11 +58,11 @@ namespace Shop.Model
 
             foreach (var spend in spendables)
             {
-                spend.Spend(_spender);
+                spend.Spend(_resourceStrategies);
             }
             foreach (var reward in rewards)
             {
-                reward.AddReward(_rewarder);
+                reward.AddReward(_resourceStrategies);
             }
         }
 

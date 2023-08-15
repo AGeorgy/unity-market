@@ -11,14 +11,14 @@ namespace Health.Spendable
 
         public int Percent => _percent;
 
-        public bool IsValid(IValidator validatorFactory)
+        public bool IsValid(IResourceStrategyFactory resourceStrategyFactory)
         {
-            return validatorFactory.IsValidSpend(this);
+            return resourceStrategyFactory.GetStrategy<HealthStrategy>().IsValidSpend(this);
         }
 
-        public void Spend(ISpender spender)
+        public void Spend(IResourceStrategyFactory resourceStrategyFactory)
         {
-            spender.Spend(this);
+            resourceStrategyFactory.GetStrategy<HealthStrategy>().Spend(this);
         }
     }
 }

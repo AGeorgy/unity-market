@@ -11,9 +11,9 @@ namespace Gold.Reward
 
         public int Amount => _amount;
 
-        public void AddReward(IRewarder rewarder)
+        public void AddReward(IResourceStrategyFactory resourceStrategyFactory)
         {
-            rewarder.AddReward(this);
+            resourceStrategyFactory.GetStrategy<GoldStrategy>().AddReward(this);
         }
 
     }

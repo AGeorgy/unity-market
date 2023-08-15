@@ -11,9 +11,9 @@ namespace Health.Reward
 
         public int Percent => _percent;
 
-        public void AddReward(IRewarder rewarder)
+        public void AddReward(IResourceStrategyFactory resourceStrategyFactory)
         {
-            rewarder.AddReward(this);
+            resourceStrategyFactory.GetStrategy<HealthPercentStrategy>().AddReward(this);
         }
     }
 }
